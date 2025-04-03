@@ -1,0 +1,266 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+@font-face {
+    font-family: 'Arcade';
+    src: url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+}
+
+body {
+    font-family: 'Arcade', 'Press Start 2P', monospace;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #000;
+    color: white;
+    overflow: hidden;
+}
+
+.game-container {
+    position: relative;
+    width: 900px;
+    margin: 0 auto;
+}
+
+.game-header {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.game-header h1 {
+    color: #ffcc00;
+    text-shadow: 0 0 5px #ff9900;
+    font-size: 2.5rem;
+    margin-bottom: 5px;
+    letter-spacing: 6px;
+}
+
+.player-name, .last-update {
+    font-size: 0.7rem;
+    color: #AAA;
+}
+
+.game-area {
+    display: flex;
+    gap: a0px;
+}
+
+canvas {
+    background-color: #000;
+    display: block;
+    border: 2px solid #3355ff;
+    box-shadow: 0 0 10px #3355ff;
+}
+
+.side-panel {
+    width: 200px;
+    padding: 10px;
+    background-color: #000;
+    border: 2px solid #3355ff;
+    border-left: none;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.score-box, .lives-box, .round-box, .controls-box {
+    border: 1px solid #3355ff;
+    padding: 10px;
+    font-size: 0.7rem;
+    text-align: center;
+}
+
+.score-box div:first-child, 
+.lives-box div:first-child, 
+.round-box div:first-child {
+    color: #ffcc00;
+    margin-bottom: 5px;
+}
+
+#score, #highScore, #level {
+    color: #fff;
+    font-size: 1.1rem;
+}
+
+.life-counters {
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+    margin-top: 5px;
+}
+
+.life-icon {
+    width: 30px;
+    height: 10px;
+    background-color: #3355ff;
+    background-image: linear-gradient(to bottom, #99aaff, #3355ff);
+    border-radius: 3px;
+}
+
+.controls-box {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.easter-eggs-found {
+    font-size: 0.6rem;
+    color: #666;
+    text-align: center;
+}
+
+.screen {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 0, 0.9);
+    padding: 2rem;
+    border: 3px solid #3355ff;
+    text-align: center;
+    width: 80%;
+    z-index: 100;
+}
+
+.screen h1 {
+    font-size: 3rem;
+    margin-bottom: 1.5rem;
+    color: #ffcc00;
+    text-shadow: 0 0 10px #ff9900;
+    letter-spacing: 6px;
+}
+
+.start-info {
+    color: #aaaaaa;
+    font-size: 0.7rem;
+    margin-bottom: 2rem;
+}
+
+.instructions {
+    color: #ffffff;
+    font-size: 0.8rem;
+    margin-bottom: 2rem;
+    text-align: left;
+    display: inline-block;
+}
+
+.player-welcome {
+    color: #00ffff;
+    margin: 0.5rem 0;
+}
+
+button {
+    background-color: #3355ff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin: 10px;
+    font-size: 0.9rem;
+    font-family: 'Arcade', 'Press Start 2P', monospace;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+button:hover {
+    background-color: #5577ff;
+    transform: scale(1.05);
+}
+
+#pauseButton, #speedButton {
+    font-size: 0.7rem;
+    padding: 8px;
+}
+
+.hidden {
+    display: none;
+}
+
+.notification {
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(0, 0, 0, 0.8);
+    color: #ffcc00;
+    padding: 10px 20px;
+    border-radius: 0;
+    font-size: 0.7rem;
+    z-index: 200;
+    transition: opacity 0.5s ease;
+    opacity: 1;
+    border: 1px solid #3355ff;
+    max-width: 80%;
+    text-align: center;
+}
+
+.notification.fade-out {
+    opacity: 0;
+}
+
+.notification.hidden {
+    display: none;
+}
+
+/* Power-up styles */
+.power-up {
+    position: absolute;
+    width: 30px;
+    height: 15px;
+    text-align: center;
+    line-height: 15px;
+    font-weight: bold;
+    font-size: 12px;
+}
+
+/* DOH boss styles */
+.doh {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    background-color: #ff0000;
+    border-radius: 30px;
+}
+
+/* Animations */
+@keyframes energyField {
+    0% { opacity: 0.2; }
+    50% { opacity: 0.7; }
+    100% { opacity: 0.2; }
+}
+
+@keyframes blink {
+    0% { opacity: 1; }
+    50% { opacity: 0.3; }
+    100% { opacity: 1; }
+}
+
+.energy-field {
+    position: absolute;
+    pointer-events: none;
+    animation: energyField 2s infinite;
+    z-index: -1;
+}
+
+.blinking {
+    animation: blink 0.5s infinite;
+}
+
+/* Special borders for each level */
+.border-level1 { border-color: #3355ff; }
+.border-level2 { border-color: #ff5533; }
+.border-level3 { border-color: #33ff55; }
+.border-level4 { border-color: #ff33ff; }
+.border-level5 { border-color: #ffff33; }
+
+/* Classic Arkanoid game elements styling */
+.silver-gradient {
+    background-image: linear-gradient(to bottom, #ffffff, #aaaaaa, #888888, #aaaaaa);
+}
+
+.gold-gradient {
+    background-image: linear-gradient(to bottom, #ffff99, #ffcc00, #cc9900, #ffcc00);
+}

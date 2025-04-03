@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Classic Arkanoid</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="game-container">
+        <div class="game-header">
+            <h1>ARKANOID</h1>
+            <p class="player-name">PLAYER: Ricky-bruh</p>
+            <p class="last-update">2025-04-03 16:50:58</p>
+        </div>
+        
+        <div class="game-area">
+            <canvas id="gameCanvas"></canvas>
+            <div id="notification" class="notification hidden"></div>
+            
+            <div class="side-panel">
+                <div class="score-box">
+                    <div>HIGH SCORE</div>
+                    <div id="highScore">10000</div>
+                </div>
+                <div class="score-box">
+                    <div>1UP</div>
+                    <div id="score">0</div>
+                </div>
+                <div class="lives-box">
+                    <div>LIVES</div>
+                    <div class="life-counters">
+                        <div class="life-icon" id="life1"></div>
+                        <div class="life-icon" id="life2"></div>
+                        <div class="life-icon" id="life3"></div>
+                    </div>
+                </div>
+                <div class="round-box">
+                    <div>ROUND</div>
+                    <div id="level">1</div>
+                </div>
+                <div class="controls-box">
+                    <button id="pauseButton">PAUSE</button>
+                    <button id="speedButton">SPEED: NORMAL</button>
+                </div>
+                <div class="easter-eggs-found">SECRET: <span id="easterEggsCount">0</span>/5</div>
+            </div>
+        </div>
+        
+        <div id="startScreen" class="screen">
+            <h1>ARKANOID</h1>
+            <div class="start-info">
+                <p>©TAITO CORP 1986</p>
+                <p class="player-welcome">PLAYER: Ricky-bruh</p>
+                <p class="date-info">2025-04-03</p>
+            </div>
+            <div class="instructions">
+                <p>← → : MOVE VAUS</p>
+                <p>SPACE : LAUNCH BALL</p>
+                <p>P : PAUSE GAME</p>
+            </div>
+            <button id="startButton">GAME START</button>
+        </div>
+        
+        <div id="gameOverScreen" class="screen hidden">
+            <h1>GAME OVER</h1>
+            <p>FINAL SCORE: <span id="finalScore">0</span></p>
+            <button id="restartButton">PLAY AGAIN</button>
+        </div>
+        
+        <div id="levelCompleteScreen" class="screen hidden">
+            <h1>ROUND CLEAR!</h1>
+            <p>GET READY FOR ROUND <span id="nextLevelNum">2</span></p>
+            <button id="nextLevelButton">CONTINUE</button>
+        </div>
+        
+        <div id="pauseScreen" class="screen hidden">
+            <h1>GAME PAUSED</h1>
+            <button id="resumeButton">RESUME</button>
+        </div>
+    </div>
+    <script src="game.js"></script>
+</body>
+</html>
